@@ -1,0 +1,42 @@
+const footer = document.querySelector(".footer")
+const userHelpRightWrap = document.querySelector(".userHelpRightWrap")
+
+let footerVisualFun = () => {
+  //可见区域顶部高度
+  let visibleTop = window.scrollY
+  //滚动条高度+视窗高度 = 可见区域底部高度
+  let visibleBottom = window.scrollY + document.documentElement.clientHeight
+  let footerCenterY = footer.offsetTop + (footer.offsetHeight / 4)
+  if(footerCenterY > visibleTop && footerCenterY <visibleBottom){
+    if (userHelpRightWrap) {
+      userHelpRightWrap.style.position = "relative"
+    }
+  } else {
+    if (userHelpRightWrap) {
+      userHelpRightWrap.style.position = "fixed"
+    }
+  }
+}
+
+footerVisualFun()
+
+document.addEventListener("scroll", () => {
+  footerVisualFun()
+})
+
+
+
+const popBox = document.querySelector("#popBox")
+const popBoxClose = document.querySelector("#popBox a img")
+if (popBoxClose) {
+  popBoxClose.addEventListener('click', () => {
+    if (popBox) {
+      popBox.style.visibility = "hidden"
+    }
+    popBoxClose.style.visibility = "hidden"
+  })  
+}
+
+
+
+
